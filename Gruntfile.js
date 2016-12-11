@@ -608,7 +608,7 @@ module.exports = function(grunt) {
 			},
 			dev: {
 				files: [
-			        {
+					{
 						data: {
 							production: false,
 							currentTimestamp: (new Date()).getTime()
@@ -618,18 +618,18 @@ module.exports = function(grunt) {
 						src: ['**/*.twig'],
 						dest: '<%= paths.dev %>/',
 						ext: '.html'
-			        }
+					}
 				]
 			},
 			dist: {
 				files: [
 					{
 						data: [
+							'<%= paths.tmp %>/gitinfos.json',
 							{
 								production: true,
 								currentTimestamp: (new Date()).getTime(),
-							},
-							'<%= paths.tmp %>/gitinfos.json'
+							}
 						],
 						expand: true,
 						cwd: '<%= paths.src %>/static/pages/',
