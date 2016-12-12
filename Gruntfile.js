@@ -587,10 +587,10 @@ module.exports = function(grunt) {
 		twigRender: {
 			options: {
 				namespaces: {
-					'data': '<%= paths.src %>/static/data/',
-					'layouts': '<%= paths.src %>/static/layouts/',
-					'partials': '<%= paths.src %>/static/partials/',
-					'macros': '<%= paths.src %>/static/macros/'
+					'data': '<%= paths.src %>/html/data/',
+					'layouts': '<%= paths.src %>/html/layouts/',
+					'partials': '<%= paths.src %>/html/partials/',
+					'macros': '<%= paths.src %>/html/macros/'
 				},
 				extensions: [
 					function(Twig){
@@ -614,7 +614,7 @@ module.exports = function(grunt) {
 							currentTimestamp: (new Date()).getTime()
 						},
 						expand: true,
-						cwd: '<%= paths.src %>/static/pages/',
+						cwd: '<%= paths.src %>/html/pages/',
 						src: ['**/*.twig'],
 						dest: '<%= paths.dev %>/',
 						ext: '.html'
@@ -632,7 +632,7 @@ module.exports = function(grunt) {
 							}
 						],
 						expand: true,
-						cwd: '<%= paths.src %>/static/pages/',
+						cwd: '<%= paths.src %>/html/pages/',
 						src: ['**/*.twig'],
 						dest: '<%= paths.dist %>/',
 						ext: '.html'
@@ -699,7 +699,7 @@ module.exports = function(grunt) {
 				tasks: ['modernizr', 'requirejs', 'concat:dev']
 			},
 			templates: {
-				files: ['<%= paths.src %>/static/**/*.{json,yml,yaml,twig}'],
+				files: ['<%= paths.src %>/html/**/*.{json,yml,yaml,twig}'],
 				tasks: ['newer:twigRender:dev', 'prettify:dev']
 			}
 		}
