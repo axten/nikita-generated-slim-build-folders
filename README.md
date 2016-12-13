@@ -11,7 +11,7 @@ If you want to write efficient and scalable (S)CSS-code for big websites, try [n
 ## Project-Setup
 
 - [__Grunt__](http://gruntjs.com/) – js task runner
-- [__Assemble__](http://assemble.io/) – static site generator
+- [__twigRender__](https://github.com/stefanullinger/grunt-twig-render) – static site generator
 - [__SASS__](http://sass-lang.com/) with [__LibSass__](http://libsass.org/) – css preprocessing
 - [__nikita.html__](https://github.com/nikita-kit/nikita-html) – HTML conventions and coding guidelines
 - [__nikita.css__](https://github.com/nikita-kit/nikita-css) – (S)CSS conventions and coding guidelines
@@ -68,7 +68,6 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 
 ## Grunt-Plugins used
 
-- [assemble](https://github.com/assemble/assemble)
 - [autoprefixer-core](https://github.com/postcss/autoprefixer-core)
 - [connect-livereload](https://github.com/intesso/connect-livereload)
 - [grunt](https://github.com/gruntjs/grunt)
@@ -104,9 +103,7 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin)
 - [grunt-svgstore](https://github.com/FWeinb/grunt-svgstore)
 - [grunt-sync](https://github.com/tomusdrw/grunt-sync)
-- [handlebars-helper-autolink](https://github.com/helpers/handlebars-helper-autolink)
-- [handlebars-helper-partial](https://github.com/helpers/handlebars-helper-partial)
-- [handlebars-helpers](https://github.com/assemble/handlebars-helpers)
+- [grunt-twig-render](https://github.com/stefanullinger/grunt-twig-render)
 - [jit-grunt](https://github.com/shootaroo/jit-grunt)
 - [time-grunt](https://github.com/sindresorhus/time-grunt)
 
@@ -136,9 +133,9 @@ $ tree -d -I node_modules
 │   └── js
 │       └── modernizr
 ├── source
-│   ├── assemble
+│   ├── html
 │   │   ├── data
-│   │   ├── helpers
+│   │   ├── macros
 │   │   ├── layouts
 │   │   ├── pages
 │   │   └── partials
@@ -185,7 +182,7 @@ describes the JS coding standards and conventions.
 
 The page will contain 2 parts of javascript.
 
-The first part is in `assemble/layouts/lyt-default.hbs` at the beginning:
+The first part is in `html/layouts/master.twig` at the beginning:
 
 ``` html
 <script src="js/modernizr.js"></script>
