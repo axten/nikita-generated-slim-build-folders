@@ -208,15 +208,6 @@ module.exports = function(grunt) {
 			
 		},
 
-		// Configuration for grouping media queries
-		group_css_media_queries: {
-			dist: {
-				files: {
-					'<%= paths.dist %>/css/styles.css': ['<%= paths.dist %>/css/styles.css']
-				}
-			}
-		},
-
 		// Configuration for validating html-files
 		htmlhint: {
 			options: {
@@ -754,7 +745,6 @@ module.exports = function(grunt) {
 		'twigRender:dist',
 		'modernizr',
 		'postcss:dist',
-		'group_css_media_queries',
 		'cssmin',
 		'requirejs',
 		'concat:dist',
