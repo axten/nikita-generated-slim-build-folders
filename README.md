@@ -85,7 +85,6 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch)
 - [grunt-csssplit](https://github.com/project-collins/grunt-csssplit)
 - [grunt-gitinfo](https://github.com/damkraw/grunt-gitinfo)
-- [grunt-group-css-media-queries](https://github.com/Se7enSky/grunt-group-css-media-queries)
 - [grunt-htmlhint](https://github.com/yaniswang/grunt-htmlhint)
 - [grunt-jsdoc](https://github.com/krampstudio/grunt-jsdoc)
 - [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr)
