@@ -19,6 +19,7 @@
     "useBuildFolders": true,
     "cleanBuildFolders": true,
     "requirejsPathToBowerComponents": "../../bower_components/",
-    "requirejsPathToNodeModules": "../../node_modules/"
+    "requirejsPathToNodeModules": "../../node_modules/",
+    "staticPageGenerator": "twigRender"
   }
 }
