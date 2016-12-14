@@ -7,6 +7,7 @@ module.exports = function(grunt) {
 	});
 	require('time-grunt')(grunt);
 
+
 	var paths = {
 		src: 'source',
 		dev: grunt.option('target') || 'build',
