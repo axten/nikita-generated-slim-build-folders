@@ -17,7 +17,7 @@ If you want to write efficient and scalable (S)CSS-code for big websites, try [n
 - [__nikita.css__](https://github.com/nikita-kit/nikita-css) – (S)CSS conventions and coding guidelines
 - [__nikita.js__](https://github.com/nikita-kit/nikita-js) – JS conventions and coding guidelines
 - [__SASS-Lint__](https://github.com/sasstools/sass-lint) – linter for SCSS files
-- [__Livereload__](http://livereload.com/) – browser auto refresh
+- [__BrowserSync__](https://browsersync.io/) – synchronised browser testing
 - [__KSS__](http://warpspire.com/kss/) – living styleguide
 
 Grunt depends on [node.js](http://nodejs.org). Some of the [Grunt plugins](#grunt-plugins-used) depend on command line tools to be installed on your (build) system.
@@ -30,9 +30,6 @@ These are the minimum requirements for the project setup:
 - [__Grunt Command Line Interface__](http://gruntjs.com/getting-started) – `sudo npm install -g grunt-cli`
 
 
-If you want to use the browser-auto-refresh-feature, get [__LiveReload.js__](https://github.com/livereload/livereload-js) and install it to the root-folder of localhost.
-
-
 ## Getting started
 
 Open your preferred command line tool and choose your project directory.  
@@ -42,11 +39,12 @@ Either use `./setup-dev-env.sh`. This will start a shell script to check require
 Or use `npm install` if your are on Windows (you have to check the requirements manually). This will install Grunt and [Grunt plugins](#grunt-plugins-used) required for the build script.
 
 1. `grunt` or `grunt build` – start build script
-2. [http://localhost:9002/](http://localhost:9002/) or [http://0.0.0.0:9002/](http://0.0.0.0:9002/) – watch your build-directory in the browser (livereload is connected on port 9003)
+2. [http://localhost:3000/](http://localhost:3000/) or [http://0.0.0.0:3000/](http://0.0.0.0:3000/) – watch your build-directory in the browser
 3. `grunt dist` – start distribution build script
 
 If you want to specify a different port, you can start the script with the `--port` option:
-`grunt --port=9010` will launch the webserver on [http://0.0.0.0:9010/](http://0.0.0.0:9010/) and will connect livereload on port 9011 (= 9010 + 1).
+`grunt --port=9000` will launch the BrowserSync webserver on [http://0.0.0.0:9000/](http://0.0.0.0:9000/) and will start the Browsersync UI on port 9001 (= 9000 + 1).
+If a port is already in use, BrowserSync will auto detect that case and increases the port number until a free port is found.
 
 If you want to generate the dist to a different folder, you may use the `--target` option:
 `grunt dist --target=www` will generate to `www` folder instead of `dist`.
@@ -69,13 +67,12 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 ## Grunt-Plugins used
 
 - [autoprefixer-core](https://github.com/postcss/autoprefixer-core)
-- [connect-livereload](https://github.com/intesso/connect-livereload)
 - [grunt](https://github.com/gruntjs/grunt)
 - [grunt-accessibility](https://github.com/yargalot/grunt-accessibility)
+- [grunt-browser-sync](https://github.com/BrowserSync/grunt-browser-sync)
 - [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent)
 - [grunt-contrib-clean](https://github.com/gruntjs/grunt-contrib-clean)
 - [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat)
-- [grunt-contrib-connect](https://github.com/gruntjs/grunt-contrib-connect)
 - [grunt-contrib-copy](https://github.com/gruntjs/grunt-contrib-copy)
 - [grunt-contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin)
 - [grunt-contrib-imagemin](https://github.com/gruntjs/grunt-contrib-imagemin)
