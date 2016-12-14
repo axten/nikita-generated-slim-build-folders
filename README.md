@@ -44,6 +44,7 @@ Or use `npm install` if your are on Windows (you have to check the requirements 
 
 If you want to specify a different port, you can start the script with the `--port` option:
 `grunt --port=9000` will launch the BrowserSync webserver on [http://0.0.0.0:9000/](http://0.0.0.0:9000/) and will start the Browsersync UI on port 9001 (= 9000 + 1).
+If a port is already in use, BrowserSync will auto detect that case and increases the port number until a free port is found.
 
 If you want to generate the dist to a different folder, you may use the `--target` option:
 `grunt dist --target=www` will generate to `www` folder instead of `dist`.
