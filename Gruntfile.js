@@ -7,17 +7,6 @@ module.exports = function(grunt) {
 	});
 	require('time-grunt')(grunt);
 
-	if (!grunt.option('port'))
-	{
-		grunt.option('port', 9002);
-	}
-
-	if (!grunt.option('livereload-port'))
-	{
-		grunt.option('livereload-port', grunt.option('port') + 1);
-	}
-
-
 	var paths = {
 		src: 'source',
 		dev: grunt.option('target') || 'build',
@@ -47,6 +36,35 @@ module.exports = function(grunt) {
 						src: ['*.html']
 					}
 				]
+			}
+		},
+
+		// Configuration for BrowserSync
+		browserSync: {
+			dev: {
+				bsFiles: {
+					src: [
+						'<%= paths.dev %>/img/**/*.{jpg,jpeg,png,gif,ico,svg}',
+						'<%= paths.dev %>/css/**/*.css',
+						'<%= paths.dev %>/js/**/*.js',
+						'<%= paths.dev %>/**/*.html'
+					]
+				},
+				options: {
+					open: false,
+					online: false,
+					watchTask: true,
+					port: grunt.option('port') || 3000,
+					ui: {
+						port: grunt.option('port')+1 || 3001
+					},
+					server: {
+						baseDir: ['<%= paths.dev %>']
+					},
+					ghostMode: {
+						scroll: false
+					}
+				}
 			}
 		},
 
@@ -128,35 +146,6 @@ module.exports = function(grunt) {
 			dev1: ['svgcss'],
 			dev2: ['sass:dev', 'twigRender:dev', 'modernizr'],
 			dist: ['svgcss', 'imagemin:dist'],
-		},
-
-		// Configuration for livereload
-		connect: {
-			livereload: {
-				options: {
-					base: ['', '<%= paths.dev %>'],
-					hostname: '0.0.0.0',
-					port: grunt.option('port'),
-					middleware: function(connect, options) {
-						grunt.log.writeln('');
-						grunt.log.writeln('Launching webserver now:');
-						grunt.log.writeln(' - index at http://0.0.0.0:' + grunt.option('port') + '/');
-						grunt.log.writeln(' - rwd-testing at http://0.0.0.0:' + grunt.option('port') + '/rwd-testing.html');
-						grunt.log.writeln('');
-						return [
-							require('connect-livereload')({
-								port: grunt.option('livereload-port')
-							}),
-							connect.static(options.base[0]),
-							connect.static(options.base[1]),
-							connect.directory(options.base[1])
-						]
-					}
-				},
-				files: {
-					src: ['**/*.html']
-				}
-			}
 		},
 
 		// Configuration for copying files
@@ -654,7 +643,6 @@ module.exports = function(grunt) {
 		// Configuration for watching changes
 		watch: {
 			options: {
-				livereload: grunt.option('livereload-port'),
 				spawn: true
 			},
 			scss: {
@@ -726,7 +714,7 @@ module.exports = function(grunt) {
 	// Build task
 	grunt.registerTask('build', [
 		'dev',
-		'connect:livereload',
+		'browserSync:dev',
 		'watch'
 	]);
 
