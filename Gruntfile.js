@@ -117,31 +117,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Configuration for concatenating js files
-		concat: {
-			options: {
-				separator: ';',
-				process: function(src, filepath)
-				{
-					// Add cachebuster for every required file
-					if (filepath == paths.src + '/js/_requireconfig.js')
-					{
-						return 'require({"urlArgs": "cb=' + (new Date()).getTime()+ '"});' + "\n\n" + src;
-					}
-
-					return src;
-				}
-			},
-			dev: {
-				dest: '<%= paths.dev %>/js/main.js',
-				src: ['node_modules/requirejs/require.js', '<%= paths.src %>/js/_requireconfig.js']
-			},
-			dist: {
-				dest: '<%= paths.dist %>/js/main.js',
-				src: ['node_modules/requirejs/require.js', '<%= paths.src %>/js/_requireconfig.js', '<%= paths.tmp %>/main.js']
-			}
-		},
-
 		// Configuration for run tasks concurrently
 		concurrent: {
 			dev1: ['svgcss'],
@@ -166,12 +141,6 @@ module.exports = function(grunt) {
 			fonts: {
 				cwd: '<%= paths.src %>/fonts/',
 				dest: '<%= paths.dist %>/fonts/',
-				expand: true,
-				src: ['**/*']
-			},
-			js: {
-				cwd: '<%= paths.src %>/js/',
-				dest: '<%= paths.dist %>/js/',
 				expand: true,
 				src: ['**/*']
 			},
@@ -545,15 +514,6 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			js: {
-				files: [
-					{
-						cwd: '<%= paths.src %>/js/',
-						dest: '<%= paths.dev %>/js/',
-						src: ['**/*', '!_requireconfig.js']
-					}
-				]
-			},
 			modernizr: {
  				files: [
 					{
@@ -622,25 +582,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Configuration for uglifying JS
-		uglify: {
-			dist: {
-				options: {
-					compress: {
-						drop_console: true
-					}
-				},
-				files: [
-					{
-						cwd: '<%= paths.dist %>/js',
-						dest: '<%= paths.dist %>/js',
-						expand: true,
-						src: ['**/*.js', '!**/_*.js']
-					}
-				]
-			}
-		},
-
 		// Configuration for watching changes
 		watch: {
 			options: {
@@ -671,18 +612,99 @@ module.exports = function(grunt) {
 				tasks: ['sync:fonts']
 			},
 			sync_js: {
-				files: ['<%= paths.src %>/js/**/*', '!<%= paths.src %>/js/_requireconfig.js'],
-				tasks: ['modernizr', 'sync:js']
-			},
-			sync_requirejs: {
-				files: ['<%= paths.src %>/js/_requireconfig.js'],
-				tasks: ['modernizr', 'requirejs', 'concat:dev']
+				files: ['<%= paths.src %>/js/**/*'],
+				tasks: ['webpack:dev']
 			},
 			templates: {
 				files: ['<%= paths.src %>/html/**/*.{json,yml,yaml,twig}'],
 				tasks: ['newer:twigRender:dev', 'prettify:dev']
 			}
-		}
+		},
+
+		webpack: (function(){
+			var webpack = require('webpack');
+			var devPlugins = [
+				new webpack.optimize.DedupePlugin()
+			];
+			var productionPlugins = devPlugins.concat([
+			]);
+
+			return {
+				options: {
+					cache: true,
+					entry: {
+						main: './<%= paths.src %>/js/_main.js'
+					},
+					output: {
+						chunkFilename: '[chunkhash].pkg.js'
+					},
+					module: {
+						preLoaders: [
+							{
+								test: /\.js$/,
+								loader: 'import-glob'
+							},
+							{
+								test: /\.scss$/,
+								loader: 'import-glob'
+							}
+						],
+						loaders: [
+							{
+								test: /\.js$/,
+								//include: [
+								////'<%= paths.src %>/js'
+								//paths.src + '/js/',
+								////	//paths.templates,
+								//],
+								exclude: /node_modules/,
+								loader: ['babel'],
+								query: {
+									compact: true,
+									presets: ['es2015'],
+									//plugins: ['transform-runtime']
+								}
+							},
+							{
+								test: /\.css$/,
+								loader: ['style', 'css']
+							},
+							{
+								test: /\.scss$/,
+								loaders: ['style', 'css', 'sass']
+							},
+							{
+								test: /\.ejs$/,
+								loader: 'rb_template-loader'
+							}
+						]
+					},
+					resolve: {
+						alias: {
+						},
+						modulesDirectories: ['<%= paths.src %>/js', 'node_modules']
+					}
+				},
+				dev: {
+					devtool: 'sourcemap',
+					debug: true,
+					watch: true,
+					output: {
+						filename: '[name].js',
+						path: '<%= paths.dev %>/js/'
+					},
+					plugins: devPlugins
+				},
+				dist: {
+					output: {
+						filename: '[name].min.js',
+						path: '<%= paths.dist %>/js/'
+					},
+					plugins: productionPlugins
+				}
+			};
+		})()
+
 	});
 
 	// Where we tell Grunt we plan to use this plug-in.
@@ -707,7 +729,7 @@ module.exports = function(grunt) {
 		'generate-tmp-styles-scss',
 		'concurrent:dev2',
 		'postcss:dev',
-		'concat:dev',
+		'webpack:dev',
 		'sync',
 		'prettify:dev'
 	]);
@@ -735,14 +757,11 @@ module.exports = function(grunt) {
 		'modernizr',
 		'postcss:dist',
 		'cssmin',
-		'requirejs',
-		'concat:dist',
+		'webpack:dist',
 		'copy:ajax',
 		'copy:favicon',
 		'copy:fonts',
-		'copy:js',
 		'copy:modernizr',
-		'uglify',
 		'prettify:dist'
 	]);
 
