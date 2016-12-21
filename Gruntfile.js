@@ -582,6 +582,26 @@ module.exports = function(grunt) {
 			}
 		},
 
+		 // Configuration for uglifying JS
+		uglify: {
+			dist: {
+				options: {
+					compress: {
+						drop_console: true
+					}
+				},
+				files: [
+					{
+						cwd: '<%%= paths.dist %>/js',
+						dest: '<%%= paths.dist %>/js',
+						expand: true,
+						src: ['**/*.js', '!**/_*.js']
+					}
+				]
+			}
+		},
+
+
 		// Configuration for watching changes
 		watch: {
 			options: {
@@ -763,6 +783,7 @@ module.exports = function(grunt) {
 		'copy:favicon',
 		'copy:fonts',
 		'copy:modernizr',
+		'uglify',
 		'prettify:dist'
 	]);
 
