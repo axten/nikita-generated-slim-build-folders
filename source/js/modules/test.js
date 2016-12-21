@@ -1,11 +1,10 @@
-define('test', ['app', 'node-logging-js'], function(app, logging)
+define('test', ['app', 'node-jsb', 'node-logging-js'], function(app, jsb, logging)
 {
 	var Test = function()
 	{
 		logging.applyLogging(this, 'Test');
 
-        console.log('test', arguments);
-
+        this.logInfo('init', arguments);
 		this.initializeEventListeners();
 	};
 
@@ -14,5 +13,6 @@ define('test', ['app', 'node-logging-js'], function(app, logging)
 
 	};
 
-	return new Test();
+    jsb.registerHandler('Test', Test);
+	return Test;
 });

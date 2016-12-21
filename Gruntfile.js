@@ -624,7 +624,8 @@ module.exports = function(grunt) {
 		webpack: (function(){
 			var webpack = require('webpack');
 			var devPlugins = [
-				new webpack.optimize.DedupePlugin()
+				new webpack.optimize.DedupePlugin(),
+				new webpack.IgnorePlugin(/^(.*)$/, /node-jsb$/)
 			];
 			var productionPlugins = devPlugins.concat([
 			]);
@@ -661,7 +662,7 @@ module.exports = function(grunt) {
 								loader: ['babel'],
 								query: {
 									compact: true,
-									presets: ['es2015'],
+									presets: ['latest'],
 									//plugins: ['transform-runtime']
 								}
 							},
