@@ -582,7 +582,7 @@ module.exports = function(grunt) {
 			}
 		},
 
-		 // Configuration for uglifying JS
+		// Configuration for uglifying JS
 		uglify: {
 			dist: {
 				options: {
@@ -592,15 +592,14 @@ module.exports = function(grunt) {
 				},
 				files: [
 					{
-						cwd: '<%%= paths.dist %>/js',
-						dest: '<%%= paths.dist %>/js',
+						cwd: '<%= paths.dist %>/js',
+						dest: '<%= paths.dist %>/js',
 						expand: true,
 						src: ['**/*.js', '!**/_*.js']
 					}
 				]
 			}
 		},
-
 
 		// Configuration for watching changes
 		watch: {
@@ -714,7 +713,7 @@ module.exports = function(grunt) {
 				},
 				dist: {
 					output: {
-						filename: '[name].min.js',
+						filename: '[name].js',
 						path: '<%= paths.dist %>/js/'
 					},
 					plugins: productionPlugins
