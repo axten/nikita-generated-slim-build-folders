@@ -673,13 +673,8 @@ module.exports = function(grunt) {
 						loaders: [
 							{
 								test: /\.js$/,
-								//include: [
-								////'<%= paths.src %>/js'
-								//paths.src + '/js/',
-								////	//paths.templates,
-								//],
 								exclude: /node_modules/,
-								loader: ['babel'],
+								loader: 'babel',
 								query: {
 									compact: true,
 									presets: ['latest'],
@@ -687,22 +682,23 @@ module.exports = function(grunt) {
 								}
 							},
 							{
-								test: /\.css$/,
-								loader: ['style', 'css']
+								test: /\.ejs$/,
+								loader: 'ejs-compiled',
+								query: {
+									'htmlmin': true,
+									'htmlminOptions': {
+										removeComments: true
+									}
+								}
 							},
 							{
 								test: /\.scss$/,
 								loaders: ['style', 'css', 'sass']
-							},
-							{
-								test: /\.ejs$/,
-								loader: 'rb_template-loader'
 							}
 						]
 					},
 					resolve: {
-						alias: {
-						},
+						alias: {},
 						modulesDirectories: ['<%= paths.src %>/js', 'node_modules']
 					}
 				},
