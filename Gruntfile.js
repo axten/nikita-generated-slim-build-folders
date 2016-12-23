@@ -586,9 +586,6 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				options: {
-					compress: {
-						drop_console: true
-					}
 				},
 				files: [
 					{
