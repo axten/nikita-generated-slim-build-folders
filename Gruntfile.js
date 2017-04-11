@@ -161,7 +161,16 @@ module.exports = function(grunt) {
 				src: ['*.css']
 			}
 		},
-		
+
+		eslint: {
+			options: {
+				fix: true,
+				envs: ['browser'],
+				configFile: './node_modules/eslint-config-nikita/index.js'
+			},
+			check: ['<%= paths.src %>/js/**/*.js']
+		},
+
 		// Configuration for gitinfo (will be populated with values from Git)
 		gitinfo: {
 			
@@ -205,48 +214,6 @@ module.exports = function(grunt) {
 						expand: true,
 						src: ['**/*.{jpg,jpeg,png,gif}']
 					}
-				]
-			}
-		},
-
-		// Configuration for validating js-files
-		jshint: {
-			options: {
-				force: true,
-				'asi': false,
-				'bitwise': false,
-				'boss': true,
-				'browser': true,
-				'curly': false,
-				'eqeqeq': false,
-				'eqnull': true,
-				'evil': false,
-				'forin': true,
-				'immed': false,
-				'indent': 4,
-				'jquery': true,
-				'laxbreak': true,
-				'maxerr': 50,
-				'newcap': false,
-				'noarg': true,
-				'noempty': false,
-				'nonew': false,
-				'nomen': false,
-				'onevar': false,
-				'plusplus': false,
-				'regexp': false,
-				'undef': false,
-				'sub': true,
-				'strict': false,
-				'white': false
-			},
-			all: {
-				options: {
-					'-W015': true,
-					'-W089': true
-				},
-				src: [
-					'<%= paths.src %>/js/**/*.js'
 				]
 			}
 		},
@@ -849,9 +816,9 @@ module.exports = function(grunt) {
 		'sasslint'
 	]);
 
-	// JSHint task
+	// ESlint task
 	grunt.registerTask('check-js', [
-		'jshint'
+		'eslint'
 	]);
 
 	// Accessibility task
