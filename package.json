@@ -31,7 +31,6 @@
         "grunt-eslint": "19.0.0",
         "grunt-gitinfo": "0.1.8",
         "grunt-htmlhint": "0.9.13",
-        "grunt-modernizr": "0.6.1",
         "grunt-newer": "1.2.0",
         "grunt-postcss": "0.8.0",
         "grunt-prettify": "0.4.0",

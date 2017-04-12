@@ -93,7 +93,6 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [grunt-gitinfo](https://github.com/damkraw/grunt-gitinfo)
 - [grunt-htmlhint](https://github.com/yaniswang/grunt-htmlhint)
 - [grunt-jsdoc](https://github.com/krampstudio/grunt-jsdoc)
-- [grunt-modernizr](https://github.com/Modernizr/grunt-modernizr)
 - [grunt-newer](https://github.com/tschaub/grunt-newer)
 - [grunt-pagespeed](https://github.com/jrcryer/grunt-pagespeed)
 - [grunt-phantomas](https://github.com/stefanjudis/grunt-phantomas)
@@ -133,7 +132,6 @@ $ tree -d -I node_modules
 │   │   ├── appicons
 │   │   └── bgs
 │   └── js
-│       └── modernizr
 ├── dist
 │   ├── css
 │   ├── fonts
@@ -141,7 +139,6 @@ $ tree -d -I node_modules
 │   │   ├── appicons
 │   │   └── bgs
 │   └── js
-│       └── modernizr
 ├── source
 │   ├── html
 │   │   ├── data
@@ -157,7 +154,6 @@ $ tree -d -I node_modules
 │   │   ├── icons
 │   │   └── temp
 │   ├── js
-│   │   └── modernizr
 │   │   └── modules
 │   ├── sass
 │   │   ├── blocks
@@ -191,17 +187,7 @@ describes the CSS coding standards and conventions.
 For the JS structure, please have a look at [nikita.js](https://github.com/nikita-kit/nikita-js). This sub project
 describes the JS coding standards and conventions.
 
-The page will contain 2 parts of javascript.
-
-The first part is in `html/layouts/master.twig` at the beginning:
-
-``` html
-<script src="js/modernizr.js"></script>
-```
-
-It ensures that the html5shiv is loaded and modernizr is ready. The modernizr file is generated automagically with all modernizr features, which are used in your `sass/**/*.sass` and `js/**/*.js` files. The `js/modernizr` folder contains custom tests for modernizr. Those will be added to the `modernizr.js`, too.
-
-The second part is at the end of the file (before the closing `</body>` tag:
+The master layout at `html/layouts/master.twig` includes the javascript at the end of the file (before the closing `</body>` tag).
 
 ``` html
 <script src="js/main.js"></script>

@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 		// Configuration for run tasks concurrently
 		concurrent: {
 			dev1: ['svgcss'],
-			dev2: ['sass:dev', 'twigRender:dev', 'modernizr'],
+			dev2: ['sass:dev', 'twigRender:dev'],
 			dist: ['svgcss', 'imagemin:dist'],
 		},
 
@@ -143,12 +143,6 @@ module.exports = function(grunt) {
 				dest: '<%= paths.dist %>/fonts/',
 				expand: true,
 				src: ['**/*']
-			},
-			modernizr: {
-				cwd: '<%= paths.tmp %>/',
-				dest: '<%= paths.dist %>/js/',
-				expand: true,
-				src: ['modernizr.js']
 			}
 		},
 
@@ -215,20 +209,6 @@ module.exports = function(grunt) {
 						src: ['**/*.{jpg,jpeg,png,gif}']
 					}
 				]
-			}
-		},
-
-		// Modernizr configuration
-		modernizr: {
-			all: {
-				customTests: ['<%= paths.src %>/js/modernizr/*.js'],
-				devFile: 'remote',
-				files: {
-					src: ['<%= paths.src %>/**/*.js', '<%= paths.src %>/**/*.scss']
-				},
-				outputFile: '<%= paths.tmp %>/modernizr.js',
-				extensibility: { teststyles: true, prefixes: true },
-				uglify: false
 			}
 		},
 
@@ -481,15 +461,6 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			modernizr: {
- 				files: [
-					{
-						cwd: '<%= paths.tmp %>/',
-						dest: '<%= paths.dev %>/js/',
-						src: 'modernizr.js'
-					}
-				]
-			}
 		},
 
 		twigRender: {
@@ -738,14 +709,12 @@ module.exports = function(grunt) {
 		'gitinfo',
 		'write-gitinfos',
 		'twigRender:dist',
-		'modernizr',
 		'postcss:dist',
 		'cssmin',
 		'webpack:dist',
 		'copy:ajax',
 		'copy:favicon',
 		'copy:fonts',
-		'copy:modernizr',
 		'uglify',
 		'prettify:dist'
 	]);
