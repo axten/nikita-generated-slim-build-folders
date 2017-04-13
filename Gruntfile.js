@@ -158,11 +158,16 @@ module.exports = function(grunt) {
 
 		eslint: {
 			options: {
-				fix: true,
 				envs: ['browser'],
 				configFile: './node_modules/eslint-config-nikita/index.js'
 			},
-			check: ['<%= paths.src %>/js/**/*.js']
+			check: ['<%= paths.src %>/js/**/*.js'],
+			fix: {
+				options: {
+					fix: true,
+				},
+				src: ['<%= paths.src %>/js/**/*.js']
+			}
 		},
 
 		// Configuration for gitinfo (will be populated with values from Git)
@@ -785,9 +790,13 @@ module.exports = function(grunt) {
 		'sasslint'
 	]);
 
-	// ESlint task
+	// ESlint tasks
 	grunt.registerTask('check-js', [
-		'eslint'
+		'eslint:check'
+	]);
+
+	grunt.registerTask('fix-js', [
+		'eslint:fix'
 	]);
 
 	// Accessibility task
