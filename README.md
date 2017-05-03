@@ -19,7 +19,7 @@ If you want to write efficient and scalable (S)CSS-code for big websites, try [n
 - [__nikita.css__](https://github.com/nikita-kit/nikita-css) – (S)CSS conventions and coding guidelines
 - [__nikita.js__](https://github.com/nikita-kit/nikita-js) – JS conventions and coding guidelines
 - [__ESLint__](http://eslint.org/) – linter for JS files
-- [__SASS-Lint__](https://github.com/sasstools/sass-lint) – linter for SCSS files
+- [__stylelint__](https://stylelint.io/) – linter for SCSS files
 - [__Browsersync__](https://browsersync.io/) – synchronised browser testing
 
 Grunt depends on [node.js](http://nodejs.org). Some of the [Grunt plugins](#grunt-plugins-used) depend on command line tools to be installed on your (build) system.
@@ -99,8 +99,8 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [grunt-postcss](https://github.com/nDmitry/grunt-postcss)
 - [grunt-prettify](https://github.com/jonschlinkert/grunt-prettify)
 - [grunt-sass](https://github.com/sindresorhus/grunt-sass)
-- [grunt-sass-lint](https://github.com/sasstools/grunt-sass-lint)
 - [grunt-string-replace](https://github.com/erickrdch/grunt-string-replace)
+- [grunt-stylelint](https://github.com/stylelint/stylelint)
 - [grunt-svg-css](https://github.com/psyrendust/grunt-svg-css)
 - [grunt-svgmin](https://github.com/sindresorhus/grunt-svgmin)
 - [grunt-svgstore](https://github.com/FWeinb/grunt-svgstore)
@@ -110,6 +110,7 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [import-glob](https://github.com/terpiljenya/import-glob)
 - [jit-grunt](https://github.com/shootaroo/jit-grunt)
 - [pre-commit](https://github.com/observing/pre-commit)
+- [stylelint-order](https://github.com/hudochenkov/stylelint-order)
 - [time-grunt](https://github.com/sindresorhus/time-grunt)
 - [webpack](https://github.com/webpack/webpack)
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)

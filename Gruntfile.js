@@ -2,7 +2,6 @@ module.exports = function(grunt) {
 
 	// Require it at the top and pass in the grunt instance
 	require('jit-grunt')(grunt, {
-		sasslint: 'grunt-sass-lint',
 		svgcss: 'grunt-svg-css'
 	});
 	require('time-grunt')(grunt);
@@ -303,16 +302,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		// Configuration for SASS/SCSS linting
-		sasslint: {
-			allFiles: [
-				'<%= paths.src %>/sass/{blocks,extends,mixins,variables,styles.scss,_*.scss}'
-			],
-			options: {
-				configFile: '.sass-lint.yml'
-			}
-		},
-
 		// Configuration for string-replacing the svgcss output
 		'string-replace': {
 			'svgcss-datasvg': {
@@ -326,6 +315,16 @@ module.exports = function(grunt) {
 					}]
 				}
 			}
+		},
+
+		// Configuration for linting SCSS
+		stylelint: {
+			options: {
+				configFile: 'stylelint.config.js',
+				formatter: 'string',
+				syntax: 'scss'
+			},
+			src: ['<%= paths.src %>/sass/**/*.scss']
 		},
 
 		// Configuration for creating SVG-Data-URIs
@@ -788,7 +787,7 @@ module.exports = function(grunt) {
 
 	// SASSLint/SCSSLint task
 	grunt.registerTask('check-scss', [
-		'sasslint'
+		'stylelint'
 	]);
 
 	// ESlint tasks
