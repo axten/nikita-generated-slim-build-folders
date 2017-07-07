@@ -9,10 +9,10 @@
     "pre-commit": "check-js",
     "devDependencies": {
         "autoprefixer": "6.7.7",
-        "babel-core": "6.24.1",
-        "babel-loader": "7.0.0",
+        "babel-core": "6.25.0",
+        "babel-loader": "7.1.1",
         "babel-plugin-transform-runtime": "6.23.0",
-        "babel-preset-env": "1.4.0",
+        "babel-preset-env": "1.6.0",
         "css-parse": "2.0.0",
         "ejs-compiled-loader": "2.2.0",
         "eslint-config-nikita": "1.0.0",
@@ -50,8 +50,8 @@
         "pre-commit": "1.2.2",
         "stylelint-order": "0.4.3",
         "time-grunt": "1.4.0",
-        "webpack": "2.4.1",
-        "webpack-dev-server": "2.4.2"
+        "webpack": "3.0.0",
+        "webpack-dev-server": "2.5.0"
     },
     "name": "nikita-generated-slim-build-folders",
     "private": true

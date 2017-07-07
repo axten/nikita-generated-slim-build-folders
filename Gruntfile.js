@@ -584,7 +584,8 @@ module.exports = function(grunt) {
 			const path = require('path');
 			const webpack = require('webpack');
 			const plugins = [
-				new webpack.IgnorePlugin(/^(.*)$/, /node-jsb$/)
+				new webpack.IgnorePlugin(/^(.*)$/, /node-jsb$/),
+				new webpack.optimize.ModuleConcatenationPlugin(),
 			];
 
 			return {
@@ -651,14 +652,14 @@ module.exports = function(grunt) {
 					devtool: 'sourcemap',
 					output: {
 						filename: '[name].js',
-						path: path.resolve(__dirname, '<%= paths.dev %>/js/')
+						path: path.resolve('<%= paths.dev %>/js/')
 					},
 					plugins: plugins
 				},
 				dist: {
 					output: {
 						filename: '[name].js',
-						path: path.resolve(__dirname, '<%= paths.dist %>/js/')
+						path: path.resolve('<%= paths.dist %>/js/')
 					},
 					plugins: plugins
 				}
