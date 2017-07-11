@@ -36,7 +36,7 @@ These are the minimum requirements for the project setup:
 
 Open your preferred command line tool and choose your project directory.  
 
-Either use `./setup-dev-env.sh`. This will start a shell script to check requirements, then runs `npm install`  automatically to install Grunt and [Grunt plugins](#grunt-plugins-used) required for the build script plus Bower and [Bower packages](#bower-packages-used). 
+Either use `./setup-dev-env.sh`. This will start a shell script to check requirements, then runs `npm install` automatically to install Grunt and [Grunt plugins](#grunt-plugins-used) required for the build script.
 
 Or use `npm install` if your are on Windows (you have to check the requirements manually). This will install Grunt and [Grunt plugins](#grunt-plugins-used) required for the build script.
 
@@ -66,7 +66,7 @@ If you dont't like the command line you can use an alternative called [grunt-dev
 You don't like to stare permanently on your console? So wouldn’t it be great if your system could notify you when your fresh build is ready to consume or when anything bad happened? Meet [grunt-notify](https://github.com/dylang/grunt-notify), an automatic desktop notification service for Grunt using Growl for OS X or Windows, Mountain Lion and Mavericks Notification Center and Notify-Send. Just install this plugin via npm and load it in your Gruntfile.
 
 
-## Grunt-Plugins used
+## Dev-Packages used
 
 - [autoprefixer-core](https://github.com/postcss/autoprefixer-core)
 - [babel-core](https://github.com/babel/babel/tree/master/packages/babel-core)
@@ -115,7 +115,13 @@ You don't like to stare permanently on your console? So wouldn’t it be great i
 - [webpack](https://github.com/webpack/webpack)
 - [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 
+## Frontend-Packages used
 
+- [backbone](https://github.com/components/backbone)
+- [jquery](http://jquery.com/)
+- [jsb](https://github.com/DracoBlue/jsb)
+- [logging.js](https://github.com/DracoBlue/logging-js)
+- [underscore](https://github.com/jashkenas/underscore)
 
 ## Project structure
 
