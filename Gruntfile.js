@@ -277,7 +277,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		
+
 		// Configuration for SASS
 		sass: {
 			dev: {

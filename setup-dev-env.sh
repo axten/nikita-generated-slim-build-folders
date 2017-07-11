@@ -16,6 +16,4 @@ then
 fi
 
 
-
-
 npm install
