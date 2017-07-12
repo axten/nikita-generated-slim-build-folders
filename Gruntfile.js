@@ -324,7 +324,13 @@ module.exports = function(grunt) {
 				formatter: 'string',
 				syntax: 'scss'
 			},
-			src: ['<%= paths.src %>/sass/**/*.scss']
+			check: ['<%= paths.src %>/sass/**/*.scss'],
+			fix: {
+				options: {
+					fix: true,
+				},
+				src: ['<%= paths.src %>/sass/**/*.scss'],
+			}
 		},
 
 		// Configuration for creating SVG-Data-URIs
@@ -786,9 +792,13 @@ module.exports = function(grunt) {
 		'htmlhint'
 	]);
 
-	// SASSLint/SCSSLint task
+	// stylelint task
 	grunt.registerTask('check-scss', [
-		'stylelint'
+		'stylelint:check'
+	]);
+
+	grunt.registerTask('fix-scss', [
+		'stylelint:fix'
 	]);
 
 	// ESlint tasks
