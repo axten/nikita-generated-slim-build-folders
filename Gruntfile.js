@@ -589,6 +589,7 @@ module.exports = function(grunt) {
 
 			const path = require('path');
 			const webpack = require('webpack');
+			const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 			const plugins = [
 				new webpack.IgnorePlugin(/^(.*)$/, /node-jsb$/),
 				new webpack.optimize.ModuleConcatenationPlugin(),
@@ -601,6 +602,7 @@ module.exports = function(grunt) {
 						main: './<%= paths.src %>/js/_main.js'
 					},
 					output: {
+						filename: '[name].js',
 						chunkFilename: '[chunkhash].pkg.js'
 					},
 					module: {
@@ -654,17 +656,22 @@ module.exports = function(grunt) {
 						modules: ['<%= paths.src %>/js', 'node_modules']
 					}
 				},
+				analyze: {
+					watch: true,
+					output: {
+						path: path.resolve('<%= paths.tmp %>/js/')
+					},
+					plugins: plugins.concat([new BundleAnalyzerPlugin()])
+				},
 				dev: {
 					devtool: 'sourcemap',
 					output: {
-						filename: '[name].js',
 						path: path.resolve('<%= paths.dev %>/js/')
 					},
 					plugins: plugins
 				},
 				dist: {
 					output: {
-						filename: '[name].js',
 						path: path.resolve('<%= paths.dist %>/js/')
 					},
 					plugins: plugins
@@ -808,6 +815,10 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('fix-js', [
 		'eslint:fix'
+	]);
+
+	grunt.registerTask('analyze-js', [
+		'webpack:analyze'
 	]);
 
 	// Accessibility task
